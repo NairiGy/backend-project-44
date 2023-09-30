@@ -1,0 +1,12 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Игры разума",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "NairiGy",
+  "license": "ISC"
+}

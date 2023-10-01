@@ -10,7 +10,7 @@ const failureResponse = (givenAnswer, correctAnswer, name) => {
     return `${givenAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.
 Let's try again, ${name}`;
     };
-const question = (number) => {
+const createQuestion = (number) => {
     return `Question: ${number}
 Your asnwer: `;
 };
@@ -21,21 +21,21 @@ const brainEvenGame = () => {
     console.log(`Hello, ${name}!`);
     console.log(gameDescr);
 
-    const congratsMsg = `Congratulations, ${name}`;
     for (let i = 0; i < numberOfQuestions; i += 1) {
         const number = randomInt();
-        const givenAnswer = readline.question(question(number));
+        const givenAnswer = readline.question(createQuestion(number));
         const correctAnswer = isEven(number) ? 'yes' : 'no';
 
         if (givenAnswer === correctAnswer && i === 2) {
+            const congratsMsg = `Congratulations, ${name}!`;
             console.log(successResponse + '\n' + congratsMsg);
         } else if (givenAnswer === correctAnswer) {
             console.log(successResponse);
         } else {
             console.log(failureResponse(givenAnswer, correctAnswer, name));
-            break;
+            return;
         }
     }
-}
+};
 
-export default brainEvenGame();
+export default brainEvenGame;

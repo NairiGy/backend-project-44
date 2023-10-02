@@ -1,4 +1,4 @@
-import readline from "readline-sync";
+import readline from 'readline-sync';
 
 const cli = () => {
   const query = `Welcome to the Brain Games!

@@ -1,5 +1,5 @@
-import { welcome, askQuestion, playRound } from '../src/index';
-import { isEven, randomInt } from '../src/utility';
+import { welcome, askQuestion, playRound } from '../src/index.js';
+import { isEven, randomInt } from '../src/utility.js';
 
 const brainEvenGame = () => {
   const gameDescr = 'Answer "yes" if the number is even, otherwise answer "no".';

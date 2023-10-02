@@ -1,6 +1,6 @@
 /* eslint-disable no-eval */
-import { welcome, askQuestion, playRound } from '../src/index';
-import { randomInt, randomOperation } from '../src/utility';
+import { welcome, askQuestion, playRound } from '../src/index.js';
+import { randomInt, randomOperation } from '../src/utility.js';
 
 const brainCalcGame = () => {
   const gameDescr = 'What is the result of the expression?';

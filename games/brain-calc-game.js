@@ -13,7 +13,7 @@ const brainCalcGame = () => {
     const number1 = randomInt(5);
     const number2 = randomInt(5);
     const operation = randomOperation();
-    const expr = number1 + operation + number2;
+    const expr = `${number1} ${operation} ${number2}`;
     const correctAnswer = String(eval(expr));
     const givenAnswer = askQuestion(expr);
     isGameGoing = playRound(givenAnswer, correctAnswer, name, roundNumber);

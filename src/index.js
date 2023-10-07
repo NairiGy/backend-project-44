@@ -23,7 +23,7 @@ const playRound = (givenAnswer, correctAnswer, name, roundNumber) => {
   const successResponse = 'Correct!';
   const failureResponse = `${givenAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.
 Let's try again, ${name}!`;
-  const isPlayerRight = givenAnswer === correctAnswer;
+  const isPlayerRight = givenAnswer.toString() === correctAnswer.toString();
   if (isPlayerRight) {
     console.log(successResponse);
     if (roundNumber === numberOfRounds) {

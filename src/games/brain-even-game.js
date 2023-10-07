@@ -1,10 +1,11 @@
 import { askQuestion, gameEngine } from '../index.js';
-import { isEven, randomInt } from '../utility.js';
+import generateNumber from './generateNumber.js';
 
+const isEven = (int) => int % 2 === 0;
 const brainEvenGame = () => {
   const gameDescr = 'Answer "yes" if the number is even, otherwise answer "no".';
   const questionGenerator = () => {
-    const number = randomInt();
+    const number = generateNumber();
     const givenAnswer = askQuestion(number);
     const correctAnswer = isEven(number) ? 'yes' : 'no';
 

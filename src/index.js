@@ -24,7 +24,6 @@ const playRound = (givenAnswer, correctAnswer, name, roundNumber) => {
   const failureResponse = `${givenAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.
 Let's try again, ${name}!`;
   const isPlayerRight = givenAnswer === correctAnswer;
-
   if (isPlayerRight) {
     console.log(successResponse);
     if (roundNumber === numberOfRounds) {
@@ -38,4 +37,21 @@ Let's try again, ${name}!`;
   return false;
 };
 
-export { welcome, askQuestion, playRound };
+const gameEngine = (gameDescr, questionGenerator) => {
+  const name = welcome(gameDescr);
+  let isGameGoing = true;
+  let roundNumber = 1;
+
+  while (isGameGoing) {
+    const [givenAnswer, correctAnswer] = questionGenerator();
+    isGameGoing = playRound(givenAnswer, correctAnswer, name, roundNumber);
+    roundNumber += 1;
+  }
+};
+
+export {
+  welcome,
+  askQuestion,
+  playRound,
+  gameEngine,
+};

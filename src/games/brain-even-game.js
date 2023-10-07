@@ -1,19 +1,16 @@
-import { welcome, askQuestion, playRound } from '../src/index.js';
-import { isEven, randomInt } from '../src/utility.js';
+import { askQuestion, gameEngine } from '../index.js';
+import { isEven, randomInt } from '../utility.js';
 
 const brainEvenGame = () => {
   const gameDescr = 'Answer "yes" if the number is even, otherwise answer "no".';
-  const name = welcome(gameDescr);
-  let isGameGoing = true;
-  let roundNumber = 1;
-
-  while (isGameGoing) {
+  const questionGenerator = () => {
     const number = randomInt();
     const givenAnswer = askQuestion(number);
     const correctAnswer = isEven(number) ? 'yes' : 'no';
-    isGameGoing = playRound(givenAnswer, correctAnswer, name, roundNumber);
-    roundNumber += 1;
-  }
+
+    return [givenAnswer, correctAnswer];
+  };
+  gameEngine(gameDescr, questionGenerator);
 };
 
 export default brainEvenGame;

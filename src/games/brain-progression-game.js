@@ -1,14 +1,10 @@
-import { welcome, askQuestion, playRound } from '../src/index.js';
-import { randomInt } from '../src/utility.js';
+import { askQuestion, gameEngine } from '../index.js';
+import { randomInt } from '../utility.js';
 
 const brainProgressionGame = () => {
   const gameDescr = 'What number is missing in the progression?';
-  const name = welcome(gameDescr);
 
-  let isGameGoing = true;
-  let roundNumber = 1;
-
-  while (isGameGoing) {
+  const questionGenerator = () => {
     const progressionLength = 10;
     const progressionStart = randomInt(20);
     const progressionStep = randomInt(10);
@@ -22,9 +18,10 @@ const brainProgressionGame = () => {
     progression[hidenPosition] = '..';
     const progressionAsText = progression.join(' ');
     const givenAnswer = askQuestion(progressionAsText);
-    isGameGoing = playRound(givenAnswer, correctAnswer, name, roundNumber);
-    roundNumber += 1;
-  }
+
+    return [givenAnswer, correctAnswer];
+  };
+  gameEngine(gameDescr, questionGenerator);
 };
 
 export default brainProgressionGame;

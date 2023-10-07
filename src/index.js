@@ -50,8 +50,6 @@ const gameEngine = (gameDescr, questionGenerator) => {
 };
 
 export {
-  welcome,
   askQuestion,
-  playRound,
   gameEngine,
 };

@@ -1,5 +1,5 @@
 import { askQuestion, gameEngine } from '../index.js';
-import generateNumber from './generateNumber.js';
+import generateNumber from '../utils.js';
 
 const findGcd = (a, b) => {
   if (b === 0) {

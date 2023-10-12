@@ -1,5 +1,5 @@
 import { askQuestion, gameEngine } from '../index.js';
-import generateNumber from './generateNumber.js';
+import generateNumber from '../utils.js';
 
 const isEven = (int) => int % 2 === 0;
 const brainEvenGame = () => {

@@ -1,5 +1,5 @@
 import { askQuestion, gameEngine } from '../index.js';
-import generateNumber from './generateNumber.js';
+import generateNumber from '../utils.js';
 
 const isPrime = (num) => {
   for (let i = 2, s = Math.sqrt(num); i <= s; i += 1) {

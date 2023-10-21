@@ -1,6 +1,4 @@
-import {
-  askQuestion, run,
-} from '../index.js';
+import { askQuestion, run } from '../index.js';
 import generateNumber from '../utils.js';
 
 const isEven = (int) => int % 2 === 0;

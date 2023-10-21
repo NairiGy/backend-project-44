@@ -44,8 +44,5 @@ const run = (generateRound, description) => {
 
 export {
   askQuestion,
-  MessageMap,
-  roundsCount,
-  welcome,
   run,
 };

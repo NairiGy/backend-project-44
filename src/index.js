@@ -1,55 +1,51 @@
 import readline from 'readline-sync';
 
+const roundsCount = 3;
+
+const MessageMap = {
+  askName: () => `Welcome to the Brain Games!
+May I Have your name? `,
+  welcome: (name) => `Hello, ${name}!`,
+  question: (expr) => `Question: ${expr}
+Your asnwer: `,
+  success: () => 'Correct!',
+  failure: (name, question, answer) => `${question} is wrong answer ;(. Correct answer was ${answer}.
+Let's try again, ${name}!`,
+  congrats: (name) => `Congratulations, ${name}!`,
+};
+
 const welcome = (gameDescr) => {
-  const welcomeMsg = `Welcome to the Brain Games!
-May I Have your name? `;
-  const name = readline.question(welcomeMsg);
-  console.log(`Hello, ${name}!`);
+  const name = readline.question(MessageMap.askName());
+  console.log(MessageMap.welcome(name));
   console.log(gameDescr);
   return name;
 };
 
-const askQuestion = (param) => {
-  const questionBody = `Question: ${param}
-Your asnwer: `;
-  const answer = readline.question(questionBody);
+const askQuestion = (expr) => {
+  const answer = readline.question(MessageMap.question(expr));
   return answer;
 };
 
-const numberOfRounds = 3;
-
-// Returns false if game ended, true otherwise
-const playRound = (givenAnswer, correctAnswer, name, roundNumber) => {
-  const successResponse = 'Correct!';
-  const failureResponse = `${givenAnswer} is wrong answer ;(. Correct answer was ${correctAnswer}.
-Let's try again, ${name}!`;
-  const isPlayerRight = givenAnswer.toString() === correctAnswer.toString();
-  if (isPlayerRight) {
-    console.log(successResponse);
-    if (roundNumber === numberOfRounds) {
-      const congratsMsg = `Congratulations, ${name}!`;
-      console.log(congratsMsg);
-      return false;
+const run = (generateRound, description) => {
+  const name = welcome(description);
+  const rounds = [];
+  for (let i = 0; i < roundsCount; i += 1) {
+    rounds.push(generateRound());
+    const [question, answer] = rounds[i];
+    if (question === answer) {
+      console.log(MessageMap.success());
+    } else {
+      console.log(MessageMap.failure(name, question, answer));
+      return;
     }
-    return true;
   }
-  console.log(failureResponse);
-  return false;
-};
-
-const gameEngine = (gameDescr, questionGenerator) => {
-  const name = welcome(gameDescr);
-  let isGameGoing = true;
-  let roundNumber = 1;
-
-  while (isGameGoing) {
-    const [givenAnswer, correctAnswer] = questionGenerator();
-    isGameGoing = playRound(givenAnswer, correctAnswer, name, roundNumber);
-    roundNumber += 1;
-  }
+  console.log(MessageMap.congrats(name));
 };
 
 export {
   askQuestion,
-  gameEngine,
+  MessageMap,
+  roundsCount,
+  welcome,
+  run,
 };

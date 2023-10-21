@@ -1,4 +1,4 @@
-import { askQuestion, gameEngine } from '../index.js';
+import { askQuestion, run } from '../index.js';
 import generateNumber from '../utils.js';
 
 const isPrime = (num) => {
@@ -8,17 +8,14 @@ const isPrime = (num) => {
   return num > 1;
 };
 
-const brainPrimeGame = () => {
-  const gameDescr = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
-  const questionGenerator = () => {
-    const number = generateNumber();
-    const correctAnswer = isPrime(number) ? 'yes' : 'no';
-    const givenAnswer = askQuestion(number);
+const generateRound = () => {
+  const number = generateNumber(1, 10);
+  const answer = isPrime(number) ? 'yes' : 'no';
+  const question = askQuestion(number);
 
-    return [givenAnswer, correctAnswer];
-  };
-  gameEngine(gameDescr, questionGenerator);
+  return [question, answer];
 };
 
-export default brainPrimeGame;
+export default () => run(generateRound, description);

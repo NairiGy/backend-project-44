@@ -1,4 +1,6 @@
-import { askQuestion, gameEngine } from '../index.js';
+import {
+  askQuestion, run,
+} from '../index.js';
 import generateNumber from '../utils.js';
 
 const findGcd = (a, b) => {
@@ -7,17 +9,15 @@ const findGcd = (a, b) => {
   }
   return findGcd(b, a % b);
 };
-const brainGcdGame = () => {
-  const gameDescr = 'Find the greatest common divisor of given numbers.';
-  const questionGenerator = () => {
-    const number1 = generateNumber();
-    const number2 = generateNumber();
-    const correctAnswer = String(findGcd(number1, number2));
-    const givenAnswer = askQuestion(`${number1} ${number2}`);
 
-    return [givenAnswer, correctAnswer];
-  };
-  gameEngine(gameDescr, questionGenerator);
+const description = 'Find the greatest common divisor of given numbers.';
+const generateRound = () => {
+  const number1 = generateNumber(1, 30);
+  const number2 = generateNumber(1, 30);
+  const answer = String(findGcd(number1, number2));
+  const question = askQuestion(`${number1} ${number2}`);
+
+  return [question, answer];
 };
 
-export default brainGcdGame;
+export default () => run(generateRound, description);

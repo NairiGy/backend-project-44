@@ -3,16 +3,21 @@ import generateNumber from '../utils.js';
 
 const description = 'What number is missing in the progression?';
 
-const generateRound = () => {
-  const progressionLength = 10;
+const generateProgression = (length) => {
   const progressionStart = generateNumber(1, 10);
   const progressionStep = generateNumber(1, 10);
-  const hidenPosition = generateNumber(0, progressionLength);
   const progression = [];
   progression[0] = progressionStart;
-  for (let i = 1; i < progressionLength; i += 1) {
+  for (let i = 1; i < length; i += 1) {
     progression[i] = progression[i - 1] + progressionStep;
   }
+  return progression;
+};
+
+const generateRound = () => {
+  const progressionLength = 10;
+  const hidenPosition = generateNumber(0, progressionLength);
+  const progression = generateProgression(progressionLength);
   const answer = String(progression[hidenPosition]);
   progression[hidenPosition] = '..';
   const progressionAsText = progression.join(' ');
